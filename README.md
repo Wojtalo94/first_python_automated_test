@@ -1,1 +1,1 @@
-# first_pyhon_automated_test
+# This is my first training automated test written in python using a recorder type program called Katalon.
