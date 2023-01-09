@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from webdriver_manager.firefox import GeckoDriverManager
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -7,9 +9,12 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 import unittest, time, re
 
+
 class TestAddGroup(unittest.TestCase):
     def setUp(self):
-        self.wd = webdriver.Firefox()
+        self.wd = webdriver.Firefox(executable_path=GeckoDriverManager().install())
+
+#        self.wd = webdriver.Firefox()
         self.wd.implicitly_wait(30)
 
     
