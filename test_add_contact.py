@@ -23,6 +23,7 @@ class TestAddContact(unittest.TestCase):
         wd.get("http://localhost/addressbook/")
 
     def login(self, wd, username, password):
+        self.open_home_page(wd)
         wd.find_element_by_name("user").send_keys(username)
         wd.find_element_by_name("pass").send_keys(password)
         wd.find_element_by_xpath("//input[@value='Login']").click()
@@ -66,7 +67,6 @@ class TestAddContact(unittest.TestCase):
 
     def test_add_contact(self):
         wd = self.wd
-        self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
         self.create_contact(wd, Contact(firstname="Jan", middlename="Marek", lastname="Kowalski", nickname="Kowal", title="mgr", company="IT", address="Cracow 33-800", home_phone="111222333", mobile_phone="444555666", work_phone="777888999", fax="123456789", email="test1@gmail.com", email2="test2@gmail.com", email3="test3@gmail.com", homepage="www.test.com", bday="13", bmonth="June", byear="1992", aday="10", amonth="April", ayear="2013", address2="Test1", phone2="Test2", notes="Test3"))
         self.return_to_home_page(wd)
@@ -74,7 +74,6 @@ class TestAddContact(unittest.TestCase):
 
     def test_add_empty_contact(self):
         wd = self.wd
-        self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
         self.create_contact(wd, Contact(firstname="", middlename="", lastname="", nickname="", title="", company="", address="", home_phone="", mobile_phone="", work_phone="", fax="", email="", email2="", email3="", homepage="", bday="-", bmonth="-", byear="", aday="-", amonth="-", ayear="", address2="", phone2="", notes=""))
         self.return_to_home_page(wd)
