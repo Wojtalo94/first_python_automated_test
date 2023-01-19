@@ -10,7 +10,6 @@ def test_add_contact(app):
                                email2="test2@gmail.com", email3="test3@gmail.com", homepage="www.test.com", bday="13",
                                bmonth="June", byear="1992", aday="10", amonth="April", ayear="2013", address2="Test1",
                                phone2="987654321", notes="Test3"))
-    app.contact.return_to_home_page()
     app.session.logout()
 
 
@@ -20,5 +19,4 @@ def test_add_empty_contact(app):
                                home_phone="", mobile_phone="", work_phone="", fax="", email="", email2="", email3="",
                                homepage="", bday="-", bmonth="-", byear="", aday="-", amonth="-", ayear="", address2="",
                                phone2="", notes=""))
-    app.contact.return_to_home_page()
     app.session.logout()
