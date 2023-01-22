@@ -70,13 +70,11 @@ class ContactHelper:
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
         self.return_to_home_page()
 
-    def modify_contact(self, contact):
+    def modify_first_contact(self, contact):
         wd = self.app.wd
         self.open_main_page()
         # Edit first contact
         wd.find_element_by_xpath("//img[@alt='Edit']").click()
-        # clear data in contact
-        self.clear_contact_details()
         # update contact
         self.fill_contact_details(contact)
         # submit contact modify
