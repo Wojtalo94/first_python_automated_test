@@ -9,7 +9,7 @@ class Application:
 
     def __init__(self):
         self.wd = webdriver.Firefox(executable_path=GeckoDriverManager().install())
-        self.wd.implicitly_wait(5) # note for my to delete later, w tej linii ustawiamy ile wedriver ma czekać,ponieważ sprawdzamy np. ilość elementów na stronie
+        self.wd.implicitly_wait(1)
         self.session = SessionHelper(self)
         self.group = GroupHelper(self)
         self.contact = ContactHelper(self)
