@@ -124,6 +124,3 @@ class ContactHelper:
             contacts.append(Contact(lastname=last, firstname=first, id=id))
         return contacts
 
-
-
-
