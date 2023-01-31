@@ -123,3 +123,7 @@ class ContactHelper:
             id = cells[0].find_element_by_name("selected[]").get_attribute("value")
             contacts.append(Contact(lastname=last, firstname=first, id=id))
         return contacts
+
+
+
+
