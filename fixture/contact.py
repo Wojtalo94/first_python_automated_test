@@ -116,7 +116,7 @@ class ContactHelper:
         wd = self.app.wd
         self.open_main_page()
         contacts = []
-        for element in wd.find_elements_by_name("entry"):
+        for element in wd.find_elements_by_class_name("entry"):
             cells = element.find_elements_by_tag_name("td")
             last = cells[1].text
             first = cells[2].text
