@@ -79,7 +79,7 @@ class ContactHelper:
         # fill contact firm
         self.fill_contact_details(contact)
         # submit contact creation
-        wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+        wd.find_element_by_css_selector('input[name="submit"]').click()
         self.return_to_home_page()
         self.contact_cache = None
 
@@ -93,14 +93,14 @@ class ContactHelper:
         # update contact
         self.fill_contact_details(contact)
         # submit contact modify
-        wd.find_element_by_xpath("//input[@name='update']").click()
+        wd.find_element_by_css_selector('input[name="update"]').click()
         self.return_to_home_page()
         self.contact_cache = None
 
     def select_contact_to_modify_by_index(self, index):
         wd = self.app.wd
         # Edit random contact
-        wd.find_elements_by_xpath("//img[@alt='Edit']")[index].click()
+        wd.find_elements_by_css_selector('img[alt="Edit"]')[index].click()
 
     def delete_first_contact(self):
         self.delete_contact_by_index(0)
@@ -119,7 +119,7 @@ class ContactHelper:
         # select first contact
         wd.find_elements_by_name("selected[]")[index].click()
         # click delete button
-        wd.find_element_by_xpath("//input[@value='Delete']").click()
+        wd.find_element_by_css_selector('input[value="Delete"]').click()
 
     def return_to_home_page(self):
         wd = self.app.wd
