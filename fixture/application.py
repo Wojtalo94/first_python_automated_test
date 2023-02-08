@@ -1,7 +1,3 @@
-from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.firefox import GeckoDriverManager
-from webdriver_manager.microsoft import IEDriverManager
-
 from fixture.session import SessionHelper
 from fixture.group import GroupHelper
 from fixture.contact import ContactHelper
@@ -12,11 +8,11 @@ class Application:
 
     def __init__(self, browser, base_url):
         if browser == "firefox":
-            self.wd = webdriver.Firefox(executable_path=GeckoDriverManager().install())
+            self.wd = webdriver.Firefox()
         elif browser == "chrome":
-            self.wd = webdriver.Chrome(ChromeDriverManager().install())
+            self.wd = webdriver.Chrome()
         elif browser == "ie":
-            self.wd = webdriver.Ie(executable_path=IEDriverManager().install())
+            self.wd = webdriver.Ie()
         else:
             raise ValueError("Unrecognized browser %s" % browser)
         self.wd.implicitly_wait(1)
