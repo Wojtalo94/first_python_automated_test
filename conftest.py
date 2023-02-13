@@ -2,6 +2,7 @@ from fixture.application import Application
 import pytest
 import json
 import os.path
+import importlib
 
 fixture = None
 target = None
@@ -39,5 +40,9 @@ def pytest_addoption(parser):
 def pytest_generate_tests(metafunc):
     for fixture in metafunc.fixturenames:
         if fixture.startswith("test_data_"):
-            testdata = load_form_module(fixture[5:])
+            testdata = load_form_module(fixture[10:])
             metafunc.parametrize(fixture, testdata, ids=[str(x) for x in testdata])
+
+
+def load_form_module(module):
+    return importlib.import_module("test_data.%s" % module).testdata
