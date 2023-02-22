@@ -115,10 +115,26 @@ class ContactHelper:
         wd.find_element_by_css_selector("div.msgbox")
         self.contact_cache = None
 
+    def delete_contact_by_id(self, id):
+        wd = self.app.wd
+        self.open_main_page()
+        self.select_contact_by_id_to_delete(id)
+        # click submit delete button
+        wd.switch_to.alert.accept()
+        wd.find_element_by_css_selector("div.msgbox")
+        self.contact_cache = None
+
     def select_contact_by_index_to_delete(self, index):
         wd = self.app.wd
         # select first contact
         wd.find_elements_by_name("selected[]")[index].click()
+        # click delete button
+        wd.find_element_by_css_selector('input[value="Delete"]').click()
+
+    def select_contact_by_id_to_delete(self, id):
+        wd = self.app.wd
+        # select first contact
+        wd.find_element_by_css_selector("input[value='%s']" % id).click()
         # click delete button
         wd.find_element_by_css_selector('input[value="Delete"]').click()
 
