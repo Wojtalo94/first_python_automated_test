@@ -12,7 +12,7 @@ def test_modify_some_contact_firstname(app, db, check_ui):
     app.contact.modify_contact_by_index(index, contact)
     new_contacts = db.get_contact_list()
     old_contacts[index] = contact
-    assert len(old_contacts) == app.contact.count()
+    assert len(old_contacts) == len(new_contacts)
     if check_ui:
         assert sorted(new_contacts, key=Contact.id_or_max) == sorted(app.contact.get_contact_list(),
                                                                      key=Contact.id_or_max)
@@ -28,7 +28,7 @@ def test_modify_some_contact_middlename(app, db, check_ui):
     app.contact.modify_contact_by_index(index, contact)
     new_contacts = db.get_contact_list()
     old_contacts[index] = contact
-    assert len(old_contacts) == app.contact.count()
+    assert len(old_contacts) == len(new_contacts)
     if check_ui:
         assert sorted(new_contacts, key=Contact.id_or_max) == sorted(app.contact.get_contact_list(),
                                                                      key=Contact.id_or_max)
@@ -44,7 +44,7 @@ def test_modify_some_contact_lastname(app, db, check_ui):
     app.contact.modify_contact_by_index(index, contact)
     new_contacts = db.get_contact_list()
     old_contacts[index] = contact
-    assert len(old_contacts) == app.contact.count()
+    assert len(old_contacts) == len(new_contacts)
     if check_ui:
         assert sorted(new_contacts, key=Contact.id_or_max) == sorted(app.contact.get_contact_list(),
                                                                      key=Contact.id_or_max)
@@ -60,7 +60,7 @@ def test_modify_some_contact_nickname(app, db, check_ui):
     app.contact.modify_contact_by_index(index, contact)
     new_contacts = db.get_contact_list()
     old_contacts[index] = contact
-    assert len(old_contacts) == app.contact.count()
+    assert len(old_contacts) == len(new_contacts)
     if check_ui:
         assert sorted(new_contacts, key=Contact.id_or_max) == sorted(app.contact.get_contact_list(),
                                                                      key=Contact.id_or_max)
@@ -76,7 +76,7 @@ def test_modify_some_contact_title(app, db, check_ui):
     app.contact.modify_contact_by_index(index, contact)
     new_contacts = db.get_contact_list()
     old_contacts[index] = contact
-    assert len(old_contacts) == app.contact.count()
+    assert len(old_contacts) == len(new_contacts)
     if check_ui:
         assert sorted(new_contacts, key=Contact.id_or_max) == sorted(app.contact.get_contact_list(),
                                                                      key=Contact.id_or_max)
@@ -92,7 +92,7 @@ def test_modify_some_contact_company(app, db, check_ui):
     app.contact.modify_contact_by_index(index, contact)
     new_contacts = db.get_contact_list()
     old_contacts[index] = contact
-    assert len(old_contacts) == app.contact.count()
+    assert len(old_contacts) == len(new_contacts)
     if check_ui:
         assert sorted(new_contacts, key=Contact.id_or_max) == sorted(app.contact.get_contact_list(),
                                                                      key=Contact.id_or_max)
@@ -108,7 +108,7 @@ def test_modify_some_contact_address(app, db, check_ui):
     app.contact.modify_contact_by_index(index, contact)
     new_contacts = db.get_contact_list()
     old_contacts[index] = contact
-    assert len(old_contacts) == app.contact.count()
+    assert len(old_contacts) == len(new_contacts)
     if check_ui:
         assert sorted(new_contacts, key=Contact.id_or_max) == sorted(app.contact.get_contact_list(),
                                                                      key=Contact.id_or_max)
@@ -124,7 +124,7 @@ def test_modify_some_contact_home_phone(app, db, check_ui):
     app.contact.modify_contact_by_index(index, contact)
     new_contacts = db.get_contact_list()
     old_contacts[index] = contact
-    assert len(old_contacts) == app.contact.count()
+    assert len(old_contacts) == len(new_contacts)
     if check_ui:
         assert sorted(new_contacts, key=Contact.id_or_max) == sorted(app.contact.get_contact_list(),
                                                                      key=Contact.id_or_max)
@@ -140,7 +140,7 @@ def test_modify_some_contact_mobile_phone(app, db, check_ui):
     app.contact.modify_contact_by_index(index, contact)
     new_contacts = db.get_contact_list()
     old_contacts[index] = contact
-    assert len(old_contacts) == app.contact.count()
+    assert len(old_contacts) == len(new_contacts)
     if check_ui:
         assert sorted(new_contacts, key=Contact.id_or_max) == sorted(app.contact.get_contact_list(),
                                                                      key=Contact.id_or_max)
@@ -156,7 +156,7 @@ def test_modify_some_contact_work_phone(app, db, check_ui):
     app.contact.modify_contact_by_index(index, contact)
     new_contacts = db.get_contact_list()
     old_contacts[index] = contact
-    assert len(old_contacts) == app.contact.count()
+    assert len(old_contacts) == len(new_contacts)
     if check_ui:
         assert sorted(new_contacts, key=Contact.id_or_max) == sorted(app.contact.get_contact_list(),
                                                                      key=Contact.id_or_max)
@@ -172,7 +172,7 @@ def test_modify_some_contact_fax(app, db, check_ui):
     app.contact.modify_contact_by_index(index, contact)
     new_contacts = db.get_contact_list()
     old_contacts[index] = contact
-    assert len(old_contacts) == app.contact.count()
+    assert len(old_contacts) == len(new_contacts)
     if check_ui:
         assert sorted(new_contacts, key=Contact.id_or_max) == sorted(app.contact.get_contact_list(),
                                                                      key=Contact.id_or_max)
@@ -188,7 +188,7 @@ def test_modify_some_contact_email(app, db, check_ui):
     app.contact.modify_contact_by_index(index, contact)
     new_contacts = db.get_contact_list()
     old_contacts[index] = contact
-    assert len(old_contacts) == app.contact.count()
+    assert len(old_contacts) == len(new_contacts)
     if check_ui:
         assert sorted(new_contacts, key=Contact.id_or_max) == sorted(app.contact.get_contact_list(),
                                                                      key=Contact.id_or_max)
@@ -204,7 +204,7 @@ def test_modify_contact_second_email(app, db, check_ui):
     app.contact.modify_contact_by_index(index, contact)
     new_contacts = db.get_contact_list()
     old_contacts[index] = contact
-    assert len(old_contacts) == app.contact.count()
+    assert len(old_contacts) == len(new_contacts)
     if check_ui:
         assert sorted(new_contacts, key=Contact.id_or_max) == sorted(app.contact.get_contact_list(),
                                                                      key=Contact.id_or_max)
@@ -220,7 +220,7 @@ def test_modify_contact_third_email(app, db, check_ui):
     app.contact.modify_contact_by_index(index, contact)
     new_contacts = db.get_contact_list()
     old_contacts[index] = contact
-    assert len(old_contacts) == app.contact.count()
+    assert len(old_contacts) == len(new_contacts)
     if check_ui:
         assert sorted(new_contacts, key=Contact.id_or_max) == sorted(app.contact.get_contact_list(),
                                                                      key=Contact.id_or_max)
@@ -236,7 +236,7 @@ def test_modify_contact_homepage(app, db, check_ui):
     app.contact.modify_contact_by_index(index, contact)
     new_contacts = db.get_contact_list()
     old_contacts[index] = contact
-    assert len(old_contacts) == app.contact.count()
+    assert len(old_contacts) == len(new_contacts)
     if check_ui:
         assert sorted(new_contacts, key=Contact.id_or_max) == sorted(app.contact.get_contact_list(),
                                                                      key=Contact.id_or_max)
@@ -252,7 +252,7 @@ def test_modify_contact_birthday_day(app, db, check_ui):
     app.contact.modify_contact_by_index(index, contact)
     new_contacts = db.get_contact_list()
     old_contacts[index] = contact
-    assert len(old_contacts) == app.contact.count()
+    assert len(old_contacts) == len(new_contacts)
     if check_ui:
         assert sorted(new_contacts, key=Contact.id_or_max) == sorted(app.contact.get_contact_list(),
                                                                      key=Contact.id_or_max)
@@ -268,7 +268,7 @@ def test_modify_contact_birthday_month(app, db, check_ui):
     app.contact.modify_contact_by_index(index, contact)
     new_contacts = db.get_contact_list()
     old_contacts[index] = contact
-    assert len(old_contacts) == app.contact.count()
+    assert len(old_contacts) == len(new_contacts)
     if check_ui:
         assert sorted(new_contacts, key=Contact.id_or_max) == sorted(app.contact.get_contact_list(),
                                                                      key=Contact.id_or_max)
@@ -284,7 +284,7 @@ def test_modify_contact_birthday_year(app, db, check_ui):
     app.contact.modify_contact_by_index(index, contact)
     new_contacts = db.get_contact_list()
     old_contacts[index] = contact
-    assert len(old_contacts) == app.contact.count()
+    assert len(old_contacts) == len(new_contacts)
     if check_ui:
         assert sorted(new_contacts, key=Contact.id_or_max) == sorted(app.contact.get_contact_list(),
                                                                      key=Contact.id_or_max)
@@ -300,7 +300,7 @@ def test_modify_contact_anniversary_day(app, db, check_ui):
     app.contact.modify_contact_by_index(index, contact)
     new_contacts = db.get_contact_list()
     old_contacts[index] = contact
-    assert len(old_contacts) == app.contact.count()
+    assert len(old_contacts) == len(new_contacts)
     if check_ui:
         assert sorted(new_contacts, key=Contact.id_or_max) == sorted(app.contact.get_contact_list(),
                                                                      key=Contact.id_or_max)
@@ -316,7 +316,7 @@ def test_modify_contact_anniversary_month(app, db, check_ui):
     app.contact.modify_contact_by_index(index, contact)
     new_contacts = db.get_contact_list()
     old_contacts[index] = contact
-    assert len(old_contacts) == app.contact.count()
+    assert len(old_contacts) == len(new_contacts)
     if check_ui:
         assert sorted(new_contacts, key=Contact.id_or_max) == sorted(app.contact.get_contact_list(),
                                                                      key=Contact.id_or_max)
@@ -332,7 +332,7 @@ def test_modify_contact_anniversary_year(app, db, check_ui):
     app.contact.modify_contact_by_index(index, contact)
     new_contacts = db.get_contact_list()
     old_contacts[index] = contact
-    assert len(old_contacts) == app.contact.count()
+    assert len(old_contacts) == len(new_contacts)
     if check_ui:
         assert sorted(new_contacts, key=Contact.id_or_max) == sorted(app.contact.get_contact_list(),
                                                                      key=Contact.id_or_max)
@@ -348,7 +348,7 @@ def test_modify_contact_second_address(app, db, check_ui):
     app.contact.modify_contact_by_index(index, contact)
     new_contacts = db.get_contact_list()
     old_contacts[index] = contact
-    assert len(old_contacts) == app.contact.count()
+    assert len(old_contacts) == len(new_contacts)
     if check_ui:
         assert sorted(new_contacts, key=Contact.id_or_max) == sorted(app.contact.get_contact_list(),
                                                                      key=Contact.id_or_max)
@@ -364,7 +364,7 @@ def test_modify_contact_second_phone(app, db, check_ui):
     app.contact.modify_contact_by_index(index, contact)
     new_contacts = db.get_contact_list()
     old_contacts[index] = contact
-    assert len(old_contacts) == app.contact.count()
+    assert len(old_contacts) == len(new_contacts)
     if check_ui:
         assert sorted(new_contacts, key=Contact.id_or_max) == sorted(app.contact.get_contact_list(),
                                                                      key=Contact.id_or_max)
@@ -380,7 +380,7 @@ def test_modify_contact_notes(app, db, check_ui):
     app.contact.modify_contact_by_index(index, contact)
     new_contacts = db.get_contact_list()
     old_contacts[index] = contact
-    assert len(old_contacts) == app.contact.count()
+    assert len(old_contacts) == len(new_contacts)
     if check_ui:
         assert sorted(new_contacts, key=Contact.id_or_max) == sorted(app.contact.get_contact_list(),
                                                                      key=Contact.id_or_max)

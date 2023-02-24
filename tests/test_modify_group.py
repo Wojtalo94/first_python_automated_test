@@ -10,7 +10,7 @@ def test_modify_some_group_name(app, db, check_ui):
     group = Group(name="NewGroupName")
     app.group.modify_group_by_id(group_no.id, group)
     new_groups = db.get_group_list()
-    assert len(old_groups) == app.group.count()
+    assert len(old_groups) == len(new_groups)
     if check_ui:
         assert sorted(new_groups, key=Group.id_or_max) == sorted(app.group.get_group_list(), key=Group.id_or_max)
 
@@ -23,7 +23,7 @@ def test_modify_some_group_header(app, db, check_ui):
     group = Group(header="NewGroupHeader")
     app.group.modify_group_by_id(group_no.id, group)
     new_groups = db.get_group_list()
-    assert len(old_groups) == app.group.count()
+    assert len(old_groups) == len(new_groups)
     if check_ui:
         assert sorted(new_groups, key=Group.id_or_max) == sorted(app.group.get_group_list(), key=Group.id_or_max)
 
@@ -36,6 +36,6 @@ def test_modify_some_group_footer(app, db, check_ui):
     group = Group(footer="NewGroupFooter")
     app.group.modify_group_by_id(group_no.id, group)
     new_groups = db.get_group_list()
-    assert len(old_groups) == app.group.count()
+    assert len(old_groups) == len(new_groups)
     if check_ui:
         assert sorted(new_groups, key=Group.id_or_max) == sorted(app.group.get_group_list(), key=Group.id_or_max)
