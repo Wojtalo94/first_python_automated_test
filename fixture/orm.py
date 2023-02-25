@@ -23,7 +23,7 @@ class ORMFixture:
         firstname = Optional(str, column='firstname')
         lastname = Optional(str, column='lastname')
         deprecated = Optional(datetime, column='deprecated')
-        groups = Set(lambda: ORMFixture.ORMContact, table="address_in_groups", column="group_id", reverse="contacts",
+        groups = Set(lambda: ORMFixture.ORMGroup, table="address_in_groups", column="group_id", reverse="contacts",
                      lazy=True)
 
     def __init__(self, host, name, user, password):
