@@ -7,7 +7,7 @@ import getopt
 import sys
 import re
 
-
+# możemy uruchomić cały ten plik aby utworzyć sobie nowe dane dla kontaktu
 try:
     opts, args = getopt.getopt(sys.argv[1:], "n:f:", ["number of groups", "file"])
 except getopt.GetoptError as err:
@@ -43,13 +43,13 @@ testdata = [Contact(firstname="", middlename="", lastname="", nickname="", title
         Contact(firstname=random_string("firstname", 10), middlename=random_string("middlename", 10),
                 lastname=random_string("lastname", 10), nickname=random_string("nickname", 10),
                 title=random_string("title", 10), company=random_string("company", 10),
-                address=random_string("address", 10), home_phone=random_string("home_phone", 10),
-                mobile_phone=random_string("mobile_phone", 10), work_phone=random_string("work_phone", 10),
-                fax=random_string("fax", 10), email=random_string("email", 15), email2=random_string("email2", 20),
+                address=random_string("address", 10), home_phone=str(random.randrange(000000000, 999999999)),
+                mobile_phone=str(random.randrange(000000000, 999999999)), work_phone=str(random.randrange(000000000, 999999999)),
+                fax=str(random.randrange(0, 999999999999)), email=random_string("email", 15), email2=random_string("email2", 20),
                 email3=random_string("email3", 20), homepage=random_string("homepage", 20),
                 bday=str(random.randrange(1, 32)), bmonth=random.choice(months), byear=str(random.randrange(1, 2050)),
                 aday=str(random.randrange(1, 32)), amonth=random.choice(months), ayear=str(random.randrange(1, 2050)),
-                address2=random_string("address2", 30), phone2=random_string("phone2", 10),
+                address2=random_string("address2", 30), phone2=str(random.randrange(000000000, 999999999)),
                 notes=random_string("notes", 30))
         for i in range(n)
     ]

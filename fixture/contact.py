@@ -89,12 +89,26 @@ class ContactHelper:
 
     def modify_contact_by_index(self, index, contact):
         wd = self.app.wd
+        self.open_main_page()
         self.select_contact_to_modify_by_index(index)
         # update contact
         self.fill_contact_details(contact)
         # submit contact modify
         wd.find_element_by_css_selector('input[name="update"]').click()
         self.return_to_home_page()
+        self.contact_cache = None
+
+    def modify_contact_by_id(self, id, contact):
+        wd = self.app.wd
+        # Open page with contacts
+        self.open_main_page()
+        self.select_contact_by_id(id)
+        # edit
+        wd.find_element_by_xpath("//a[@href='edit.php?id=%s']" % id).click()
+        self.fill_contact_details(contact)
+        # update and return
+        wd.find_element_by_name("update").click()
+        wd.find_element_by_link_text("home page").click()
         self.contact_cache = None
 
     def select_contact_to_modify_by_index(self, index):
