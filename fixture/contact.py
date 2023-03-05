@@ -214,17 +214,18 @@ class ContactHelper:
         phone2 = re.search("P: (.*)", text).group(1)
         return Contact(home_phone=home_phone, mobile_phone=mobile_phone, work_phone=work_phone, phone2=phone2)
 
-    def add_contact_to_group_by_id(self, id):
+    def add_contact_to_group_by_id(self, id, group_id):
         wd = self.app.wd
+        # open contact page and select one
         self.open_main_page()
         self.select_contact_by_id(id)
-        wd.find_element_by_name("to_group").click()
-        wd.find_element_by_xpath("//div[4]/select/option").click()
-        # click Add to (group) button
-        wd.find_element_by_name("add").click()
+        # Add selected contact into one group
+        self.add_to_certain_group(group_id)
+        # Return to home page
+        wd.find_element_by_link_text("home").click()
         self.contact_cache = None
 
-    def delete_contact_to_group_by_id(self, id):
+    def delete_contact_from_group_by_id(self, id):
         wd = self.app.wd
         self.open_main_page()
         # select third option
@@ -239,3 +240,10 @@ class ContactHelper:
         wd = self.app.wd
         # select first contact
         wd.find_element_by_css_selector("input[value='%s']" % id).click()
+
+    def add_to_certain_group(self, id):
+        wd = self.app.wd
+        wd.find_element_by_name("to_group").click()
+        #wd.find_element_by_xpath("//select[@name='to_group']/option[@value='%s']" % id).click()
+        Select(wd.find_element_by_name("to_group")).select_by_value(id)
+        wd.find_element_by_name("add").click()
