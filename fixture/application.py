@@ -31,6 +31,17 @@ class Application:
     def open_home_page(self):
         wd = self.wd
         wd.get(self.base_url)
+        # zamiast powyższej linijki czyli () można by napisać dodatkowe sprawdzanie czy została otwarta strona domowa:
+        #if wd.current_url.endswith("/addressbook/") and len(wd.find_elements(By.NAME, "user")) > 0:  # checking if
+        #    # logging page is open
+        #    return
+        #elif wd.current_url.endswith("/addressbook/") \
+        #        and len(wd.find_elements(By.XPATH, "//input[@value='Send_e-Mail']")) > 0:  # checking if contact list
+        #    # is open
+        #    return
+        #else:
+        #    wd.get(self.base_url)
+        # można by to napisać że jako wynik assert fail (Strona nie jest główna)
 
     def destroy(self):
         self.wd.quit()

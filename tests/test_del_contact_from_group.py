@@ -5,6 +5,15 @@ import random
 
 orm = ORMFixture(host="127.0.0.1", name="addressbook", user="root", password="")
 
+# puszczając dwa testy odnoszące się do db, jest problem, dostaję " Database object was already bound to MySQL provider"
+# sprobować przerobić fixture db uzywając "db.bind(provider='mysql', host='', user='', passwd='', db='')"
+# oraz disconnect()
+# https://docs.ponyorm.org/api_reference.html
+
+#oraz https://github.com/ponyorm/pony/issues/214:
+# app.db.disconnect()
+#  app.db.provider = None
+#  app.db.schema = None
 
 def test_delete_contact_from_group(app, db):
     if len(db.get_contact_list()) == 0:
@@ -19,7 +28,6 @@ def test_delete_contact_from_group(app, db):
         old_contacts = db.get_contact_list()
         contact = random.choice(old_contacts)
         app.contact.add_contact_to_group_by_id(contact.id)
-        # poniższy warunek mi nie działa, a fajnie by było sprawdzić czy jest coś w tabeli w kontakty w grupach
     if len(db.get_group_list_with_added_contacts()) == 0:
         contact_list = orm.get_contact_list()
         contact = random.choice(contact_list)
@@ -29,39 +37,19 @@ def test_delete_contact_from_group(app, db):
 
     groups_with_contacts = db.get_group_list_with_added_contacts()
     group1 = random.choice(groups_with_contacts)
-    # start_list = orm.get_contacts_not_in_group(group1)
-
+    start_list = orm.get_contacts_not_in_group(group1)
     before_list = orm.get_contacts_in_group(group1)
-    contact = random.choice(before_list)
-
-
-
-
-    # gościu poniżej usuwa kontakt z grupy za pomocą bazy danych zamiast UI. Według mnie trzeba pobrać z bazy danych ID
-    # gdzie jest kontakt w grupie, i za pomocą tego id wybrać grupę z listy, usunąć grupę + sprawdzenia
-    db.delete_contact_from_group_by_id(contact.id, group1.id)
+    contact1 = random.choice(before_list)
+    db.delete_contact_from_group_by_id(contact1.id, group1.id)
     after_list = orm.get_contacts_in_group(group1)
-    print("\n group1.id = " + group1.id, "\n contact.id = " + contact.id, "\n before_list = " + before_list,
-          "\n after_list = " + after_list)
+    check_list = orm.get_contacts_not_in_group(group1)
+    # contacts within the chosen group
+    assert len(before_list) - 1 == len(after_list)
+    # contacts outside the chosen group
+    assert len(start_list) + 1 == len(check_list)
+    # before_list modification, and then comparison
+    before_list.remove(contact1)
+    assert sorted(before_list, key=Group.id_or_max) == sorted(after_list, key=Group.id_or_max)
 
-
-
-
-
-
-    # check_list = orm.get_contacts_not_in_group(group1)
-
-    # assert len(before_list) - 1 == len(after_list)
-    # assert len(start_list) + 1 == len(check_list)
-    # before_list.remove(contact)
-    # assert sorted(before_list, key=Group.id_or_max) == sorted(after_list, key=Group.id_or_max)
-
-    # old_contacts = db.get_contact_list()
-    # contact = random.choice(old_contacts)
-    # app.contact.delete_contact_by_id(contact.id)
-    # new_contacts = db.get_contact_list()
-    # assert len(old_contacts) - 1 == len(new_contacts)
-    # old_contacts.remove(contact)
-    # assert old_contacts == new_contacts
-    # if check_ui:
-        # assert sorted(new_contacts, key=Group.id_or_max) == sorted(app.contact.get_contact_list(), key=Group.id_or_max)
+    print("\n group1.id = " + group1.id, "\n contact.id = " + contact1.id, "\n before_list = " + str(before_list),
+          "\n after_list = " + str(after_list))

@@ -2,6 +2,8 @@ from selenium.webdriver.support.ui import Select
 from model.contact import Contact
 import re
 
+# tutaj też w tych metodach mogę pododawać na konieć assert fail z opisem (nie działa bo...)
+
 
 class ContactHelper:
     def __init__(self, app):
@@ -11,6 +13,10 @@ class ContactHelper:
         wd = self.app.wd
         if not (wd.current_url.endswith("/addressbook/")):
             wd.find_element_by_link_text("home").click()
+
+    def select_first_contact(self):
+        wd = self.app.wd
+        wd.find_element_by_name("selected[]").click()
 
     def change_field_value(self, field_name, text):
         wd = self.app.wd
@@ -94,7 +100,8 @@ class ContactHelper:
         # update contact
         self.fill_contact_details(contact)
         # submit contact modify
-        wd.find_element_by_css_selector('input[name="update"]').click()
+        # wd.find_element_by_css_selector('input[name="update"]').click() # ten usunąć ale dodać do notatek jako wyszukiwanie po CSS
+        wd.find_element_by_name("update").click()
         self.return_to_home_page()
         self.contact_cache = None
 
@@ -115,7 +122,13 @@ class ContactHelper:
         wd = self.app.wd
         self.open_main_page()
         # Edit random contact
-        wd.find_elements_by_css_selector('img[alt="Edit"]')[index].click()
+        wd.find_elements_by_css_selector('img[alt="Edit"]')[index].click() # spróbować zamiast alt dać title
+        # inna metoda :
+        # row = wd.find_elements_by_name("entry")[index]
+        # cell = row.find_elements_by_tag_name("td")[7]
+        # cell.find_element_by_tag_name("a").click()
+
+
 
     def delete_first_contact(self):
         self.delete_contact_by_index(0)
@@ -143,14 +156,16 @@ class ContactHelper:
         # select first contact
         wd.find_elements_by_name("selected[]")[index].click()
         # click delete button
-        wd.find_element_by_css_selector('input[value="Delete"]').click()
+        # wd.find_element_by_css_selector('input[value="Delete"]').click() # ten usunąć ale dodać do notatek jako wyszukiwanie po CSS
+        wd.find_element_by_xpath("//input[@value='Delete']").click()
 
     def select_contact_by_id_to_delete(self, id):
         wd = self.app.wd
         # select first contact
         wd.find_element_by_css_selector("input[value='%s']" % id).click()
         # click delete button
-        wd.find_element_by_css_selector('input[value="Delete"]').click()
+        # wd.find_element_by_css_selector('input[value="Delete"]').click() # ten usunąć ale dodać do notatek jako wyszukiwanie po CSS
+        wd.find_element_by_xpath("//input[@value='Delete']").click()
 
     def return_to_home_page(self):
         wd = self.app.wd
@@ -185,7 +200,11 @@ class ContactHelper:
         wd = self.app.wd
         self.open_main_page()
         # select created contact do view details
-        wd.find_elements_by_css_selector('img[alt="Details"]')[index].click()
+        wd.find_elements_by_css_selector('img[alt="Details"]')[index].click() # spróbować zamiast alt dać title
+        # inna metoda :
+        # row = wd.find_elements_by_name("entry")[index]
+        # cell = row.find_elements_by_tag_name("td")[6]
+        # cell.find_element_by_tag_name("a").click()
 
     def get_contact_info_from_edit_page(self, index):
         wd = self.app.wd
@@ -243,7 +262,7 @@ class ContactHelper:
 
     def add_to_certain_group(self, id):
         wd = self.app.wd
-        wd.find_element_by_name("to_group").click()
-        #wd.find_element_by_xpath("//select[@name='to_group']/option[@value='%s']" % id).click()
+        # wd.find_element_by_name("to_group").click()
+        # wd.find_element_by_xpath("//select[@name='to_group']/option[@value='%s']" % id).click()
         Select(wd.find_element_by_name("to_group")).select_by_value(id)
         wd.find_element_by_name("add").click()

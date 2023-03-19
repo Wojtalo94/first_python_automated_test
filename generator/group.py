@@ -6,7 +6,7 @@ import jsonpickle
 import getopt
 import sys
 
-
+# możemy uruchomić cały ten plik aby utworzyć sobie nowe dane dla grup
 try:
     opts, args = getopt.getopt(sys.argv[1:], "n:f:", ["number of groups", "file"])
 except getopt.GetoptError as err:

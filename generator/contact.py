@@ -38,8 +38,7 @@ months = ["January", "February", "March", "April", "May", "June", "July", "Augus
 
 testdata = [Contact(firstname="", middlename="", lastname="", nickname="", title="", company="", address="",
                     home_phone="", mobile_phone="", work_phone="", fax="", email="", email2="", email3="", homepage="",
-                    bday="-", bmonth="-", byear="", aday="-", amonth="-", ayear="", address2="", phone2="", notes="")] \
-           + [
+                    bday="-", bmonth="-", byear="", aday="-", amonth="-", ayear="", address2="", phone2="", notes="")] + [
         Contact(firstname=random_string("firstname", 10), middlename=random_string("middlename", 10),
                 lastname=random_string("lastname", 10), nickname=random_string("nickname", 10),
                 title=random_string("title", 10), company=random_string("company", 10),
