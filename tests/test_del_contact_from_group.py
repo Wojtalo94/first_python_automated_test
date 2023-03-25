@@ -5,15 +5,6 @@ import random
 
 orm = ORMFixture(host="127.0.0.1", name="addressbook", user="root", password="")
 
-# puszczając dwa testy odnoszące się do db, jest problem, dostaję " Database object was already bound to MySQL provider"
-# sprobować przerobić fixture db uzywając "db.bind(provider='mysql', host='', user='', passwd='', db='')"
-# oraz disconnect()
-# https://docs.ponyorm.org/api_reference.html
-
-#oraz https://github.com/ponyorm/pony/issues/214:
-# app.db.disconnect()
-#  app.db.provider = None
-#  app.db.schema = None
 
 def test_delete_contact_from_group(app, db):
     if len(db.get_contact_list()) == 0:

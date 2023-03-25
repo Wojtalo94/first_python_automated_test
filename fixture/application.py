@@ -2,9 +2,18 @@ from fixture.session import SessionHelper
 from fixture.group import GroupHelper
 from fixture.contact import ContactHelper
 from selenium import webdriver
+# Konstrukcję import pokazują co mamy zamiar wykorzystać, jakie klasy z zewnętrznych bibliotek używamy
 
 
 class Application:
+# Metoda - to funkcja znajdująca się wewnątrz klasy. W takiej funkcji zawsze powinien być specjalny szczególny parametr,
+# który zazwyczaj nazywa się słowem self. To obiekt w którym metoda jest wywoływana.
+
+# Funkcją inicjalizacji możemy uruchomić sterownik, czyli przeglądarkę, ale potem trzeba jakimś sposobem uruchomiony
+# sterownik oddać do testowej metody i przekazać do funkcji zakończenia. To robi się przez obiekt self. To znaczy my
+# umieszczamy to łączę w jakies pole tego obiektu.
+
+# dalej -> VII. Tworzenie pierwszego testu z pomocą recorde'ra -> 8. Tworzenie metod pomocnicznych. Podniesienie "czytelności" kodu
 
     def __init__(self, browser, base_url):
         if browser == "firefox":

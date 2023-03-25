@@ -9,7 +9,7 @@ import jsonpickle
 fixture = None
 target = None
 
-
+# W pythonie funkcje nie muszą znajdować się w jakieś klasie.
 def load_config(file):
     global target
     if target is None:
